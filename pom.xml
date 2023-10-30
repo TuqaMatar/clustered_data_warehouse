@@ -40,6 +40,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>clustered-data-warehouse</finalName>
 	</build>
 
 </project>
