@@ -26,6 +26,14 @@ public class Deal {
     @Digits(integer = 10, fraction = 2, message = "Deal amount must be a number with up to 10 integer digits and 2 fraction digits")
     private double dealAmount;
 
+    public Deal(String dealUniqueId, String fromCurrencyIsoCode, String toCurrencyIsoCode, String dealTimestamp, double dealAmount) {
+        this.dealUniqueId = dealUniqueId;
+        this.fromCurrencyIsoCode = fromCurrencyIsoCode;
+        this.toCurrencyIsoCode = toCurrencyIsoCode;
+        this.dealTimestamp = dealTimestamp;
+        this.dealAmount = dealAmount;
+    }
+
     public String getId() {
         return id;
     }
