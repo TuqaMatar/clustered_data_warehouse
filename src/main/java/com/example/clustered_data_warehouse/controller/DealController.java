@@ -3,6 +3,8 @@ package com.example.clustered_data_warehouse.controller;
 import com.example.clustered_data_warehouse.model.Deal;
 import com.example.clustered_data_warehouse.service.DealService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/deals")
 public class DealController {
     private final DealService dealService;
+    private final Logger logger = LoggerFactory.getLogger(DealController.class);
+
 
     @Autowired
     public DealController(DealService dealService) {
@@ -27,12 +31,14 @@ public class DealController {
 
     @PostMapping("/import")
     public ResponseEntity<String> importDeal(@RequestBody @Valid Deal deal ) {
-
+        logger.trace("access import Deal");
         if (dealService.getDealByUniqueId(deal.getDealUniqueId()) != null) {
+            logger.trace("same unique id exists for deal:"+ deal.getDealUniqueId());
             return ResponseEntity.badRequest().body("Deal with the same unique id already exists.");
         }
 
         dealService.saveDeal(deal);
+        logger.trace("saved Deal");
         return ResponseEntity.ok("Deal processed successfully");
 
     }

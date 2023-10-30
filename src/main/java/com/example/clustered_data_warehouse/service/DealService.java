@@ -1,13 +1,14 @@
 package com.example.clustered_data_warehouse.service;
 import com.example.clustered_data_warehouse.model.Deal;
 import com.example.clustered_data_warehouse.repository.DealRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DealService {
     private final DealRepository dealRepository;
-
     @Autowired
     public DealService(DealRepository dealRepository) {
         this.dealRepository = dealRepository;

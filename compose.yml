@@ -10,5 +10,7 @@ services:
     container_name: clustered-data-warehouse
     ports:
       - 8080:8080
+    volumes:
+      - ./log:/log
     links:
       - mongodb
